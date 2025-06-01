@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecruitmentTrackingAPI.Data;
 
@@ -11,9 +12,11 @@ using RecruitmentTrackingAPI.Data;
 namespace RecruitmentTrackingAPI.Migrations
 {
     [DbContext(typeof(RecruitmentDBContext))]
-    partial class RecruitmentDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250601113228_Added all Domainss")]
+    partial class AddedallDomainss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,9 +131,6 @@ namespace RecruitmentTrackingAPI.Migrations
                     b.Property<string>("Desc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("JobPostedDay")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("ManagerID")
                         .HasColumnType("uniqueidentifier");

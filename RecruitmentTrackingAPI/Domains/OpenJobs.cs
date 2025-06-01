@@ -11,6 +11,7 @@ namespace RecruitmentTrackingAPI.Domains
         public string Desc { get; set; }
         [DefaultValue(1)]
         public int NumberOfOpenJobs { get; set; }
+        public int JobPostedDay { get; set; }
         public HiringManager Manager { get; set; }
     }
 }
