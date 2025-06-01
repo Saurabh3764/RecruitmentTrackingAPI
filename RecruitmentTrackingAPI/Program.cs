@@ -1,5 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.EntityFrameworkCore;
+using RecruitmentTrackingAPI.Data;
 
+var builder = WebApplication.CreateBuilder(args);
+//Load connection string from environment variable
+var envConnectionString = Environment.GetEnvironmentVariable("RecruitmentTrackingDB", EnvironmentVariableTarget.User);
+ 
+// Set it manually into configuration
+builder.Configuration["ConnectionStrings:RecruitmentTrackingDB"] = envConnectionString;
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -7,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<RecruitmentDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RecruitmentTrackingDB")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
